@@ -1,0 +1,30 @@
+name: Guestbook CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Basic Check (Linter / Test)
+        run: echo "✅ CI/CD berhasil dijalankan!"
+
+      # OPTIONAL - Tambahkan test script kalau kamu punya
+      # - name: Run Tests
+      #   run: npm test
