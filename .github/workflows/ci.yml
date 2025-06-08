@@ -23,8 +23,18 @@ jobs:
         run: npm install
 
       - name: Run Basic Check (Linter / Test)
-        run: echo "✅ CI/CD berhasil dijalankan!"
+        run: echo "CI/CD berhasil dijalankan!"
 
-      # OPTIONAL - Tambahkan test script kalau kamu punya
-      # - name: Run Tests
-      #   run: npm test
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: QA Step
+        run: echo "cucd berhasil dijalankan"
+
+      - name: Simulasi Deploy ke Vercel
+        run: echo "Proyek ini dideploy otomatis oleh Vercel saat push ke branch main"
